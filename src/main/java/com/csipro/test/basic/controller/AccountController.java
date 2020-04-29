@@ -25,7 +25,7 @@ public class AccountController {
     @Autowired
     public AccountRepository accountRepository;
 
-    @GetMapping("/")
+    @GetMapping()
     public CommonResponse getAccountList() {
 
         List<AccountEntity> accountEntityList = accountRepository.findAll();
@@ -59,7 +59,7 @@ public class AccountController {
         return new CommonResponse("SUCCESS", accountResponse);
     }
 
-    @PostMapping("/")
+    @PostMapping()
     public CommonResponse createAccount(@RequestBody AccountRequest accountRequest) {
         UUID uuid = UUID.randomUUID();
         AccountEntity accountEntity = new AccountEntity();
