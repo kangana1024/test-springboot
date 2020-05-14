@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -61,6 +62,43 @@ public class AccountController {
     accountResponse.setNumber(accountEntity.getNumber());
 
     return new CommonResponse("SUCCESS", accountResponse);
+  }
+
+  @PutMapping("/{id}")
+  public CommonResponse
+  updateAccount(@PathVariable("id") Integer id,
+                @RequestBody AccountRequest accountRequest) {
+    AccountEntity accountEntity = accountRepository.getById(id);
+    UUID uuid = UUID.randomUUID();
+
+    CustomerEntity customerEntity =
+        customerRepository.getById(accountEntity.getCutomerId());
+    customerEntity.setAddress(accountRequest.getAddress());
+    customerEntity.setName(accountRequest.getName());
+    customerEntity.setPhone(uuid.toString());
+    Date dob;
+    try {
+      dob = new SimpleDateFormat("dd-MM-yyyy").parse(accountRequest.getDob());
+    } catch (ParseException e) {
+      e.printStackTrace();
+      return new CommonResponse("ERROR.NOT_UPDATE", "DOB. not found.");
+    }
+    customerEntity.setDob(dob);
+    customerEntity.setEmail(accountRequest.getEmail());
+
+    accountEntity.setName(accountRequest.getName());
+    accountEntity.setNumber(uuid.toString());
+    accountEntity.setAmount(accountRequest.getAmount());
+
+    try {
+      customerEntity.setAccount(accountEntity);
+      accountEntity.setCustomer(customerEntity);
+      customerRepository.save(customerEntity);
+    } catch (Exception e) {
+      e.printStackTrace();
+      return new CommonResponse("ERROR.NOT_UPDATE", "account not save.");
+    }
+    return new CommonResponse("SUCCESS", "account id : " + id + " updated...");
   }
 
   @DeleteMapping("/{id}")

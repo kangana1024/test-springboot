@@ -34,7 +34,7 @@ public class AccountEntity {
 
   @Column(name = "updatedBy") private String updatedBy;
 
-  @OneToOne(fetch = FetchType.LAZY,orphanRemoval=true, optional = false)
+  @OneToOne(fetch = FetchType.LAZY, orphanRemoval = true, optional = false)
   @JoinColumn(name = "customer_id", nullable = false)
   private CustomerEntity customer;
 
@@ -44,6 +44,8 @@ public class AccountEntity {
     }
     this.customer = customer;
   }
+
+  public Integer getCutomerId() { return customer.getId(); }
 
   public Integer getId() { return id; }
 
