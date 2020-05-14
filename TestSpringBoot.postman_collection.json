@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"Jane Doe\",\n    \"email\": \"jane@gmail.com\",\n    \"address\": \"123 / 5\",\n    \"dob\": \"14-04-1988\",\n    \"amount\": 5000\n}",
+					"raw": "{\n    \"name\": \"Cat Doe\",\n    \"email\": \"cat@gmail.com\",\n    \"address\": \"123 / 5\",\n    \"dob\": \"14-04-1988\",\n    \"amount\": 50000\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -27,6 +27,34 @@
 					"port": "{{PORT}}",
 					"path": [
 						"account"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Account by ID",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"John Doe\",\n    \"email\": \"john01@gmail.com\",\n    \"address\": \"123 / 5\",\n    \"dob\": \"14-04-1988\",\n    \"amount\": 50000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}:{{PORT}}/account/1",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"account",
+						"1"
 					]
 				}
 			},
@@ -134,18 +162,76 @@
 			"response": []
 		},
 		{
+			"name": "Update Customer by ID",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Cat Thetiger\",\n    \"email\": \"tiger@gmail.com\",\n    \"address\": \"123 / 5\",\n    \"dob\": \"14-04-1988\",\n    \"amount\": 50000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}:{{PORT}}/account/3",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"account",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Get Customer By ID",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{HOST}}:{{PORT}}/customer/1",
+					"raw": "{{HOST}}:{{PORT}}/customer/3",
 					"host": [
 						"{{HOST}}"
 					],
 					"port": "{{PORT}}",
 					"path": [
 						"customer",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload file",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/Users/kandev/Downloads/12108197_1111669238851220_8487448348633330365_n.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{HOST}}:{{PORT}}/customer/upload/1",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"customer",
+						"upload",
 						"1"
 					]
 				}
@@ -177,13 +263,13 @@
 	],
 	"variable": [
 		{
-			"id": "4d2cbba4-6f9b-4c98-9384-38cee51deaae",
+			"id": "660e1ceb-493a-416a-b23a-b33ea78a0521",
 			"key": "HOST",
 			"value": "localhost",
 			"type": "string"
 		},
 		{
-			"id": "afa152e4-4f66-4d6a-8c04-4788fdc1d4b4",
+			"id": "289f812b-7bbe-4503-9c44-aa56bca5b209",
 			"key": "PORT",
 			"value": "8080",
 			"type": "string"

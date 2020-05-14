@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
@@ -37,6 +38,8 @@ public class CustomerEntity {
 
   @Column(name = "updatedBy") private String updatedBy;
 
+  @Column(name = "downloadfile") private String downloadfile;
+
   @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL,
             orphanRemoval = true, fetch = FetchType.LAZY)
   private AccountEntity account;
@@ -56,6 +59,12 @@ public class CustomerEntity {
   public String getName() { return name; }
 
   public void setName(String name) { this.name = name; }
+
+  public String getDownloadFile() { return downloadfile; }
+
+  public void setDownloadFile(String downloadfile) {
+    this.downloadfile = downloadfile;
+  }
 
   public String getEmail() { return email; }
 
